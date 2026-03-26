@@ -1,6 +1,7 @@
 import { useParams, useSearchParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { DatePicker } from "../components/DatePicker";
+import { TimePicker } from "../components/TimePicker";
 import { WeatherStrip } from "../components/WeatherStrip";
 import ritt from "../data/ritt.json";
 
@@ -13,12 +14,17 @@ export function RittPage() {
   const initialDate = searchParams.get("date") ?? rittData?.officialDate ?? "";
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
 
-  // Keep URL in sync with selected date
+  const [startTime, setStartTime] = useState<string>(searchParams.get("start") ?? "");
+  const [finishTime, setFinishTime] = useState<string>(searchParams.get("finish") ?? "");
+
+  // Keep URL in sync with date and timing params
   useEffect(() => {
-    if (selectedDate) {
-      setSearchParams({ date: selectedDate }, { replace: true });
-    }
-  }, [selectedDate, setSearchParams]);
+    const params: Record<string, string> = {};
+    if (selectedDate) params.date = selectedDate;
+    if (startTime) params.start = startTime;
+    if (finishTime) params.finish = finishTime;
+    setSearchParams(params, { replace: true });
+  }, [selectedDate, startTime, finishTime, setSearchParams]);
 
   if (!rittData) {
     return (
@@ -60,10 +66,25 @@ export function RittPage() {
           onChange={setSelectedDate}
           officialDate={rittData.officialDate}
         />
+        <TimePicker
+          startTime={startTime}
+          finishTime={finishTime}
+          onStartChange={setStartTime}
+          onFinishChange={setFinishTime}
+          onClear={() => {
+            setStartTime("");
+            setFinishTime("");
+          }}
+        />
       </section>
 
       <section className="ritt-page__weather-section">
-        <WeatherStrip waypoints={rittData.waypoints} date={selectedDate || null} />
+        <WeatherStrip
+          waypoints={rittData.waypoints}
+          date={selectedDate || null}
+          startTime={startTime || null}
+          finishTime={finishTime || null}
+        />
       </section>
     </div>
   );

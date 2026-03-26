@@ -7,14 +7,20 @@ type Props = {
   data: WeatherData | undefined;
   isLoading: boolean;
   isError: boolean;
+  /** Expected arrival time, e.g. "10:00". Present only in hourly/timing mode. */
+  arrivalTime?: string;
 };
 
-export function WeatherCard({ waypoint, data, isLoading, isError }: Props) {
+export function WeatherCard({ waypoint, data, isLoading, isError, arrivalTime }: Props) {
   const { label } = waypoint;
 
   return (
     <div className="weather-card">
       <div className="weather-card__label">{label}</div>
+
+      {arrivalTime && (
+        <div className="weather-card__arrival">~{arrivalTime}</div>
+      )}
 
       {isLoading && (
         <div className="weather-card__loading">Laster...</div>
@@ -34,9 +40,15 @@ export function WeatherCard({ waypoint, data, isLoading, isError }: Props) {
             <div className="weather-card__icon">{emoji}</div>
             <div className="weather-card__description">{wLabel}</div>
             <div className="weather-card__temps">
-              <span className="weather-card__temp-max">{data.tempMax}°</span>
-              {" / "}
-              <span className="weather-card__temp-min">{data.tempMin}°</span>
+              {data.hourlyTemp != null ? (
+                <span className="weather-card__temp-hourly">{data.hourlyTemp}°</span>
+              ) : (
+                <>
+                  <span className="weather-card__temp-max">{data.tempMax}°</span>
+                  {" / "}
+                  <span className="weather-card__temp-min">{data.tempMin}°</span>
+                </>
+              )}
             </div>
             <div className="weather-card__detail">
               <span title="Nedbør">🌧 {data.precipitation} mm</span>
