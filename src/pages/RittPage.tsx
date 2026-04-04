@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { DatePicker } from "../components/DatePicker";
 import { TimePicker } from "../components/TimePicker";
 import { WeatherStrip } from "../components/WeatherStrip";
+import { RittMap } from "../components/RittMap";
+import { HistoricalWeatherTable } from "../components/HistoricalWeatherTable";
+import { computeElevationGain } from "../lib/ritt";
 import ritt from "../data/ritt.json";
 
 export function RittPage() {
@@ -40,25 +43,37 @@ export function RittPage() {
     { day: "numeric", month: "long", year: "numeric" }
   );
 
+  const elevationGain = computeElevationGain(rittData.waypoints);
+
   return (
     <div className="ritt-page">
-      <nav className="ritt-page__nav">
-        <Link to="/">← Alle ritt</Link>
-      </nav>
-
       <header className="ritt-page__header">
         <h1>{rittData.name}</h1>
         <div className="ritt-page__meta">
-          <span>{rittData.distance} km</span>
-          <span>{rittData.region}</span>
-          <span>Offisiell dato: {formattedOfficialDate}</span>
+          <span className="ritt-page__meta-item">{rittData.distance} km</span>
+          {elevationGain != null && (
+            <span className="ritt-page__meta-item ritt-page__meta-item--elevation">
+              ↑ {elevationGain} m
+            </span>
+          )}
+          <span className="ritt-page__meta-item">{rittData.region}</span>
+          <span className="ritt-page__meta-item">Offisiell dato: {formattedOfficialDate}</span>
           {rittData.url && (
-            <a href={rittData.url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={rittData.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ritt-page__meta-item ritt-page__meta-link"
+            >
               Offisiell nettside ↗
             </a>
           )}
         </div>
       </header>
+
+      <section className="ritt-page__map-section">
+        <RittMap waypoints={rittData.waypoints} name={rittData.name} />
+      </section>
 
       <section className="ritt-page__date-section">
         <DatePicker
@@ -84,6 +99,13 @@ export function RittPage() {
           date={selectedDate || null}
           startTime={startTime || null}
           finishTime={finishTime || null}
+        />
+      </section>
+
+      <section className="ritt-page__history-section">
+        <HistoricalWeatherTable
+          waypoints={rittData.waypoints}
+          officialDate={rittData.officialDate}
         />
       </section>
     </div>

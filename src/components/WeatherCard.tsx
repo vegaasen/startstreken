@@ -17,6 +17,9 @@ export function WeatherCard({ waypoint, data, isLoading, isError, arrivalTime }:
   return (
     <div className="weather-card">
       <div className="weather-card__label">{label}</div>
+      {waypoint.altitude != null && (
+        <div className="weather-card__altitude">{waypoint.altitude} m o.h.</div>
+      )}
 
       {arrivalTime && (
         <div className="weather-card__arrival">~{arrivalTime}</div>

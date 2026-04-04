@@ -1,3 +1,6 @@
+/* Import Leaflet CSS */
+@import "leaflet/dist/leaflet.css";
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -10,6 +13,9 @@
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --shadow-sm: rgba(0, 0, 0, 0.06) 0 2px 8px;
+  --nav-height: 56px;
+  --radius: 10px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -43,27 +49,23 @@
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    --shadow-sm: rgba(0, 0, 0, 0.3) 0 2px 8px;
   }
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+body {
+  margin: 0;
 }
 
 #root {
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;
-  text-align: center;
   border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
 }
 
 h1,
@@ -75,12 +77,12 @@ h3 {
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
+  font-size: 48px;
+  letter-spacing: -1.4px;
+  margin: 28px 0 12px;
   @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+    font-size: 32px;
+    margin: 20px 0 8px;
   }
 }
 h2 {
@@ -93,7 +95,7 @@ h2 {
   }
 }
 h3 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -101,14 +103,111 @@ h3 {
   margin: 0 0 12px;
 }
 
-/* Home page layout */
-.home-page__header {
-  padding: 0 32px;
-  text-align: left;
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* ─── Global Nav ────────────────────────────────────────────────────── */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
+
   @media (max-width: 1024px) {
     padding: 0 16px;
+    gap: 10px;
   }
+}
+
+.site-nav__logo {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-h);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.site-nav__selector {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.site-nav__select {
+  font: inherit;
+  font-size: 14px;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  cursor: pointer;
+  max-width: 320px;
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 13px;
+    max-width: 200px;
+  }
+}
+
+/* ─── Home page layout ───────────────────────────────────────────────── */
+
+.home-page__header {
+  padding: 0 32px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    padding: 0 16px 16px;
+  }
+}
+
+.home-page__header p {
+  color: var(--text);
+  font-size: 16px;
+  margin-top: 0;
 }
 
 .home-page__sections {
@@ -149,21 +248,552 @@ h3 {
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 12px;
 }
-p {
-  margin: 0;
+
+/* ─── Ritt card ──────────────────────────────────────────────────────── */
+
+.ritt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+
+  &:hover {
+    border-color: var(--accent-border);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+  }
 }
 
-code,
-.counter {
-  font-family: var(--mono);
+.ritt-card__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  line-height: 1.3;
+}
+
+.ritt-card__meta {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.ritt-card__distance {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.ritt-card__date {
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ─── Ritt page layout ───────────────────────────────────────────────── */
+
+.ritt-page {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px;
+  text-align: left;
+}
+
+.ritt-page--not-found {
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.ritt-page__header {
+  padding: 0 32px 20px;
+  border-bottom: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    padding: 0 16px 16px;
+  }
+}
+
+.ritt-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+.ritt-page__meta-item {
   display: inline-flex;
-  border-radius: 4px;
+  align-items: center;
+}
+
+.ritt-page__meta-item--elevation {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.ritt-page__meta-link {
+  color: var(--accent);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+.ritt-page__map-section {
+  padding: 0 32px;
+  margin-top: 24px;
+  @media (max-width: 1024px) {
+    padding: 0 16px;
+  }
+}
+
+.ritt-page__date-section {
+  padding: 24px 32px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  @media (max-width: 1024px) {
+    padding: 20px 16px 0;
+  }
+}
+
+.ritt-page__weather-section {
+  margin-top: 24px;
+  padding: 0 32px;
+  @media (max-width: 1024px) {
+    padding: 0 16px;
+  }
+}
+
+.ritt-page__history-section {
+  margin-top: 32px;
+  padding: 0 32px;
+  @media (max-width: 1024px) {
+    padding: 0 16px;
+  }
+}
+
+/* ─── Map component ──────────────────────────────────────────────────── */
+
+.ritt-map__details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ritt-map__summary {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  background: var(--code-bg);
+  transition: background 0.12s;
+
+  &::-webkit-details-marker { display: none; }
+
+  &::before {
+    content: "▶";
+    font-size: 10px;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    background: var(--accent-bg);
+  }
+}
+
+details[open] .ritt-map__summary::before {
+  transform: rotate(90deg);
+}
+
+.ritt-map__fallback-note {
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.ritt-map__container {
+  height: 380px;
+  width: 100%;
+  background: var(--border);
+
+  @media (max-width: 1024px) {
+    height: 280px;
+  }
+}
+
+/* Leaflet marker override */
+.ritt-map__marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.ritt-map__marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* ─── Historical weather table ───────────────────────────────────────── */
+
+.history-table__details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.history-table__summary {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  background: var(--code-bg);
+  transition: background 0.12s;
+
+  &::-webkit-details-marker { display: none; }
+
+  &::before {
+    content: "▶";
+    font-size: 10px;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    background: var(--accent-bg);
+  }
+}
+
+details[open] .history-table__summary::before {
+  transform: rotate(90deg);
+}
+
+.history-table__wrapper {
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: right;
+}
+
+.history-table th {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+
+  &:first-child { text-align: left; }
+}
+
+.history-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-h);
+
+  &:first-child { text-align: left; }
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.history-table tbody tr:hover td {
+  background: var(--accent-bg);
+}
+
+.history-table__year {
+  font-weight: 600;
   color: var(--text-h);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.history-table__icon {
+  font-size: 18px;
+  text-align: center !important;
+}
+
+.history-table__status {
+  text-align: center !important;
+  color: var(--text);
+  font-style: italic;
+}
+
+.history-table__status--error {
+  color: #ef4444;
+}
+
+.history-table__row--loading td {
+  opacity: 0.5;
+}
+
+.history-table__note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* ─── Weather components ─────────────────────────────────────────────── */
+
+.weather-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.weather-strip__banner {
+  font-size: 12px;
+  color: var(--text);
+  font-style: italic;
+}
+
+.weather-strip__cards {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.weather-card {
+  flex: 1 0 160px;
+  max-width: 220px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 140px;
+  }
+}
+
+.weather-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.weather-card__altitude {
+  font-size: 11px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.weather-card__arrival {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.weather-card__badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  align-self: flex-start;
+}
+
+.weather-card__icon {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.weather-card__description {
+  font-size: 13px;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.weather-card__temps {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-top: 4px;
+}
+
+.weather-card__temp-max { color: var(--text-h); }
+.weather-card__temp-min { color: var(--text); }
+.weather-card__temp-hourly { color: var(--accent); }
+
+.weather-card__detail {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.weather-card__loading,
+.weather-card__error,
+.weather-card__placeholder {
+  font-size: 13px;
+  color: var(--text);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.weather-card__error {
+  color: #ef4444;
+}
+
+/* Loading skeleton animation */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.weather-card__loading {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.weather-strip__source-banner {
+  font-size: 12px;
+  color: var(--text);
+  font-style: italic;
+  margin-top: 8px;
+  text-align: left;
+}
+
+/* ─── DatePicker / TimePicker ────────────────────────────────────────── */
+
+.date-picker,
+.time-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.date-picker__label,
+.time-picker__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.date-picker__controls,
+.time-picker__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-picker__hint,
+.time-picker__hint {
+  font-size: 12px;
+  color: var(--text);
+  font-style: italic;
+}
+
+.time-picker__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-picker__input,
+.time-picker__input {
+  font: inherit;
+  font-size: 14px;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+  }
+}
+
+.date-picker__reset,
+.time-picker__clear {
+  font: inherit;
+  font-size: 13px;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.12s;
+
+  &:hover {
+    background: var(--accent-bg);
+  }
+}
+
+/* ─── Site footer ────────────────────────────────────────────────────── */
+
+.site-footer {
+  margin-top: auto;
+  padding: 20px 32px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media (max-width: 1024px) {
+    padding: 16px;
+  }
+}
+
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
 }
