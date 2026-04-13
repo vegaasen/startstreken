@@ -1,3 +1,5 @@
+import weatherCache from "../data/weather-cache.json";
+
 export type Waypoint = {
   label: string;
   lat: number;
@@ -74,12 +76,18 @@ export async function fetchForecastWeather(
 /**
  * Fetches the same calendar date across the past 10 years from the archive
  * and returns a simple average as a climate estimate.
+ *
+ * Checks the pre-built weather cache first (src/data/weather-cache.json).
+ * Falls back to live API calls only if the cache entry is missing.
  */
 export async function fetchClimateAverage(
   waypoint: Waypoint,
   date: string
 ): Promise<WeatherData> {
   const [, month, day] = date.split("-");
+  const cacheKey = `${waypoint.lat},${waypoint.lon},${month},${day}`;
+  const cached = (weatherCache.climateAverages as Record<string, WeatherData>)[cacheKey];
+  if (cached) return cached;
 
   const startYear = 2015;
   const endYear = 2024;

@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useQueries } from "@tanstack/react-query";
 import { fetchWeather } from "../lib/weather";
 import { describeWeatherCode } from "../lib/wmo";
-import type { Waypoint } from "../lib/weather";
+import type { Waypoint, WeatherData } from "../lib/weather";
+import weatherCache from "../data/weather-cache.json";
+
+const historicalByYear = weatherCache.historicalByYear as Record<string, WeatherData>;
 
 type Props = {
   waypoints: Waypoint[];
@@ -34,15 +37,19 @@ export function HistoricalWeatherTable({ waypoints, officialDate }: Props) {
 
   // One query per (year × waypoint) = 10 × 5 = 50 queries max
   // Flat array: year 0 wp 0, year 0 wp 1, ..., year 1 wp 0, ...
+  // Cache key for historicalByYear: "lat,lon,MM,DD,YYYY"
   const queryDefs = HISTORY_YEARS.flatMap((year) =>
     waypoints.map((wp) => {
       const date = `${year}-${mm}-${dd}`;
+      const cacheKey = `${wp.lat},${wp.lon},${mm},${dd},${year}`;
+      const cachedData = historicalByYear[cacheKey];
       return {
         queryKey: ["weather-history", wp.lat, wp.lon, date] as const,
         queryFn: () => fetchWeather(wp, date),
         staleTime: Infinity,
         retry: 1,
-        enabled: isOpen,
+        enabled: isOpen && !cachedData,
+        initialData: cachedData,
       };
     })
   );

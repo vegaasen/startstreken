@@ -1,0 +1,38 @@
+name: Refresh weather cache
+
+on:
+  schedule:
+    # Run nightly at 03:00 UTC (04:00 Oslo time in winter, 05:00 in summer)
+    - cron: "0 3 * * *"
+  # Allow manual triggering from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: Fetch & commit weather cache
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Fetch weather data
+        run: bun run fetch-weather
+
+      - name: Commit updated cache
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/weather-cache.json
+          if git diff --cached --quiet; then
+            echo "No changes to weather cache, skipping commit."
+          else
+            git commit -m "chore: refresh weather cache [$(date -u +%Y-%m-%d)]"
+            git push
+          fi

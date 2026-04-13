@@ -103,6 +103,13 @@ src/
 - [ ] **Comparison mode** — show official date vs custom date side by side
 - [ ] **Hourly breakdown** — expand a waypoint card to show hour-by-hour forecast
 - [ ] **Wind direction** — add degrees → compass label to WeatherCard
+- [ ] **Feels-like temperature** — show apparent temperature alongside raw temp (available free from Open-Meteo)
+- [ ] **Precipitation probability** — show % chance of rain in addition to expected mm; more actionable for gear decisions
+- [ ] **Pacing model** — replace linear interpolation with speed-based arrival times; user inputs expected avg km/h, waypoint times derived from actual route distances
+- [ ] **Gear suggestion** — rule-based output ("Bring arm warmers", "Rain jacket recommended") derived from the weather strip data
+- [ ] **My planned ritt** — localStorage-persisted bookmarks of ritt + date combos, accessible from the navbar
+- [ ] **Official start time pre-fill** — pre-populate start time input with the known mass-start time for each ritt
+- [ ] **Elevation profile chart** — SVG chart of the route elevation with waypoint markers overlaid (altitude data already in waypoints)
 
 ### Data quality
 
@@ -123,6 +130,8 @@ src/
 - [ ] **Dark mode** — respect `prefers-color-scheme`
 - [ ] **Offline / PWA** — cache last-fetched weather for use without connectivity
 - [ ] **Weather trend indicator** — warmer/colder arrow relative to day before
+- [ ] **UV index** — relevant for long summer ritt on exposed mountain terrain
+- [ ] **Wet road risk indicator** — combine recent precip + temp to flag likely icy/wet conditions, useful for spring ritt
 
 ---
 
