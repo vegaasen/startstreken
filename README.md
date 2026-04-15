@@ -95,21 +95,21 @@ src/
 
 ### v2 features
 
-- [ ] **Map view** — Leaflet map with waypoint pins on the ritt detail page
+- [x] **Map view** — Leaflet + react-leaflet map with colour-coded waypoint pins; OSRM route polyline with straight-line fallback; lazy-loaded inside a `<details>` toggle
 - [ ] **GPX upload** — derive waypoints automatically from a GPX file
 - [x] **More ritt** — expanded to 18; sync with [sykling.no terminliste](https://sykling.no/sykkelritt/terminliste/) each season
 - [ ] **Langrenn** — add cross-country ski races (e.g. Birkebeinerrennet, Holmenkollmarsjen) with a `type` field in the data model; add relative humidity (`relative_humidity_2m`) to API calls; show humidity in WeatherCard for ski disciplines
 - [x] **Copy link button** — explicit share button alongside the existing URL-based state
 - [ ] **Comparison mode** — show official date vs custom date side by side
 - [ ] **Hourly breakdown** — expand a waypoint card to show hour-by-hour forecast
-- [ ] **Wind direction** — add degrees → compass label to WeatherCard
-- [ ] **Feels-like temperature** — show apparent temperature alongside raw temp (available free from Open-Meteo)
+- [x] **Wind direction** — `degreesToCompass()` in `wind.ts` (8-point) + relative label (Medvind/Motvind/Sidevind); rendered in WeatherCard with a rotated arrow
+- [x] **Feels-like temperature** — `apparent_temperature` from Open-Meteo; shown as "Føles som X°" in WeatherCard
 - [x] **Precipitation probability** — show % chance of rain in addition to expected mm; more actionable for gear decisions
-- [ ] **Pacing model** — replace linear interpolation with speed-based arrival times; user inputs expected avg km/h, waypoint times derived from actual route distances
-- [ ] **Gear suggestion** — rule-based output ("Bring arm warmers", "Rain jacket recommended") derived from the weather strip data
-- [ ] **My planned ritt** — localStorage-persisted bookmarks of ritt + date combos, accessible from the navbar
+- [~] **Pacing model** — speed input sets finish time (`calcFinishTimeFromSpeed`); waypoint splits still use linear distance interpolation (elevation-aware pacing not yet done)
+- [x] **Gear suggestion** — `GearSuggestion.tsx` rule set: temperature thresholds, precipitation levels, headwind, with `info`/`warn`/`danger` severity
+- [x] **My planned ritt** — `useMyRitt` hook persists ritt + date/time bookmarks in localStorage under `rittvær:mine-ritt`; "Mine ritt" section on HomePage + bookmark toggle in RittPage
 - [ ] **Official start time pre-fill** — pre-populate start time input with the known mass-start time for each ritt
-- [ ] **Elevation profile chart** — SVG chart of the route elevation with waypoint markers overlaid (altitude data already in waypoints)
+- [x] **Elevation profile chart** — `ElevationProfile.tsx` SVG chart with filled area, waypoint dots, km/altitude axis labels
 
 ### Data quality
 
@@ -119,15 +119,15 @@ src/
 
 ### Technical
 
-- [ ] **Fix `useWeather` hook** — refactor from `useQuery` in a loop to [`useQueries`](https://tanstack.com/query/latest/docs/framework/react/reference/useQueries) (rules of hooks)
+- [x] **Fix `useWeather` hook** — refactored from `useQuery` in a loop to [`useQueries`](https://tanstack.com/query/latest/docs/framework/react/reference/useQueries) (rules of hooks)
 - [ ] **Tests** — Vitest unit tests for `weather.ts` (mocked fetch) and `wmo.ts`
-- [ ] **CI** — GitHub Actions: typecheck + lint + test on push/PR
-- [ ] **Deployment** — Vercel / Cloudflare Pages / Azure Static Web Apps
-- [ ] **ESLint type-aware rules** — upgrade to `tseslint.configs.recommendedTypeChecked`
+- [~] **CI** — GitHub Actions runs typecheck (via `tsc -b`) + lint on push/PR; test step pending until Vitest is added
+- [x] **Deployment** — GitHub Pages via `.github/workflows/pages.yml` (deploy on push to `main`)
+- [x] **ESLint type-aware rules** — upgraded to `tseslint.configs.recommendedTypeChecked`
 
 ### Nice to have
 
-- [ ] **Dark mode** — respect `prefers-color-scheme`
+- [x] **Dark mode** — `@media (prefers-color-scheme: dark)` + `color-scheme: light dark` in `index.css`
 - [ ] **Offline / PWA** — cache last-fetched weather for use without connectivity
 - [ ] **Weather trend indicator** — warmer/colder arrow relative to day before
 - [ ] **UV index** — relevant for long summer ritt on exposed mountain terrain

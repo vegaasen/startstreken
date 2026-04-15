@@ -29,7 +29,7 @@ export function NavBar() {
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value;
-    if (value) navigate(`/ritt/${value}`);
+    if (value) void navigate(`/ritt/${value}`);
   }
 
   return (

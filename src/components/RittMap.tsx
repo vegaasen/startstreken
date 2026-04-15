@@ -19,8 +19,8 @@ async function fetchOsrmRoute(waypoints: Waypoint[]): Promise<[number, number][]
   const url = `https://router.project-osrm.org/route/v1/bike/${coords}?overview=full&geometries=geojson`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`OSRM error: ${res.status}`);
-  const json = await res.json();
-  const route: OsrmRoute = json.routes?.[0];
+  const json = await res.json() as { routes?: OsrmRoute[] };
+  const route = json.routes?.[0];
   if (!route) throw new Error("No route returned");
   // GeoJSON coords are [lon, lat] — flip to [lat, lon] for Leaflet
   return route.geometry.coordinates.map(([lon, lat]) => [lat, lon]);
@@ -49,7 +49,7 @@ export function RittMap({ waypoints, name }: Props) {
     if (!isOpen || !mapRef.current || !polylineCoords) return;
 
     // Dynamic import so Leaflet CSS can be imported alongside
-    import("leaflet").then((L) => {
+    void import("leaflet").then((L) => {
       // Destroy previous instance if re-mounting
       if (leafletMapRef.current) {
         leafletMapRef.current.remove();

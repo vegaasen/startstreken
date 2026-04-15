@@ -79,7 +79,7 @@ async function runWithConcurrency<T>(
   limit: number,
   delayMs: number = 0
 ): Promise<T[]> {
-  const results: T[] = new Array(tasks.length);
+  const results = new Array<T>(tasks.length);
   let idx = 0;
 
   async function worker() {
@@ -132,7 +132,7 @@ async function fetchArchiveDay(
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const res = await fetch(`${ARCHIVE_URL}?${params}`);
+      const res = await fetch(`${ARCHIVE_URL}?${params.toString()}`);
       if (res.status === 429) {
         // Back off and retry
         const backoff = 2000 * (attempt + 1);
@@ -144,7 +144,7 @@ async function fetchArchiveDay(
         console.warn(`  Archive API ${res.status} for ${date} @ ${wp.label}`);
         return null;
       }
-      const json = await res.json();
+      const json = await res.json() as { daily: Record<string, (number | null)[]> };
       const d = json.daily;
       return {
         tempMax: d.temperature_2m_max?.[0] ?? null,

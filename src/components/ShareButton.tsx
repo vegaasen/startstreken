@@ -21,7 +21,7 @@ export function ShareButton() {
   return (
     <button
       className={`ritt-page__bookmark-btn ritt-page__share-btn${state !== "idle" ? ` ritt-page__share-btn--${state}` : ""}`}
-      onClick={handleShare}
+      onClick={() => void handleShare()}
       title="Kopier lenke til utklippstavlen"
       aria-live="polite"
     >
