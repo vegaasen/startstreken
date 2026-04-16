@@ -110,7 +110,7 @@ export function TimePicker({
       </div>
       {timingActive && (
         <div className="time-picker__hint">
-          Viser vær ved forventet ankomsttid for hvert punkt
+          Viser vær ved forventet ankomsttid på hvert punkt
         </div>
       )}
     </div>

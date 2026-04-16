@@ -29,7 +29,7 @@ function SiteFooter() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Foreslå ett ritt
+          Foreslå et ritt
         </a>
       </span>
     </footer>

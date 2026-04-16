@@ -112,8 +112,8 @@ export function HomePage() {
         <div className="home-page__hero-eyebrow">Norske sykkelritt</div>
         <h1>Sjekk været.<br />Sykle smartere.</h1>
         <p className="home-page__hero-sub">
-          Timebasert værvarsling og historiske klimasnitt for etappepunkt
-          langs ruten — tilpasset din starttid 💯.
+          Timebasert værvarsling og historiske klimasnitt for hvert punkt
+          langs ruten — tilpasset din starttid.
         </p>
         <a href="#alle-ritt" className="home-page__hero-cta">
           Se alle ritt →
@@ -130,11 +130,11 @@ export function HomePage() {
 
         <div className="home-page__feature">
           <div className="home-page__feature-text">
-            <div className="home-page__feature-eyebrow">Rute-vær</div>
-            <h2>Vær for hver etappe, ikke bare start</h2>
+            <div className="home-page__feature-eyebrow">Rutevær</div>
+            <h2>Vær for hele ruten — ikke bare starten</h2>
             <p>
-              Vi henter värvarsler for alle nøkkelpunktene langs ruten — start,
-              topp, ned og mål. Du ser temperatur, vind og nedbør akkurat der det
+              Vi henter værvarsler for alle nøkkelpunktene langs ruten — start,
+              topp, nedstigning og mål. Du ser temperatur, vind og nedbør akkurat der det
               teller.
             </p>
           </div>
@@ -153,9 +153,9 @@ export function HomePage() {
         <div className="home-page__feature home-page__feature--reverse">
           <div className="home-page__feature-text">
             <div className="home-page__feature-eyebrow">Historikk + sanntid</div>
-            <h2>Historiske data møter sanntidsvarselet</h2>
+            <h2>Sanntidsvarsel møter historiske data</h2>
             <p>
-              Kommende ritt viser live-varsel fra Open-Meteo. For ritt langt frem
+              Kommende ritt viser live-varsler direkte fra Open-Meteo. For ritt langt frem
               i tid bruker vi klimasnitt fra de siste 15 årene — samme dato, samme
               sted. Du vet alltid hva slags vær du kan forvente.
             </p>
@@ -166,7 +166,7 @@ export function HomePage() {
             <ul className="home-page__feature-visual-items">
               <li className="home-page__feature-visual-item">Timebasert varsel (0–16 dager)</li>
               <li className="home-page__feature-visual-item">Klimasnitt (historisk gjennomsnitt)</li>
-              <li className="home-page__feature-visual-item">Utstyrsanbefalinger basert på data</li>
+              <li className="home-page__feature-visual-item">Smarte bekledningsråd basert på data</li>
               <li className="home-page__feature-visual-item">Veirisiko (is, slaps, vått)</li>
             </ul>
           </div>
@@ -298,7 +298,7 @@ export function HomePage() {
               Sjekk været nå →
             </Link>
             <span className="home-page__cta-banner-meta">
-              Gratis · Ingen innlogging
+              Helt gratis · Ingen innlogging
             </span>
           </div>
         </div>
