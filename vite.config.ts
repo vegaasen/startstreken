@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
-// Base path is /bike-ritt-weathery/ when building on GitHub Actions, / otherwise.
+// Base path is /startstreken/ when building on GitHub Actions, / otherwise.
 // This allows the same build to work both locally and on GitHub Pages.
-const base = process.env.GITHUB_ACTIONS ? '/bike-ritt-weathery/' : '/'
+const base = process.env.GITHUB_ACTIONS ? '/startstreken/' : '/'
 
 // https://vite.dev/config/
 export default defineConfig({
