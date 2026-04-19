@@ -15,7 +15,7 @@ import { usePageTitle } from "../hooks/usePageTitle";
 import { useWeather } from "../hooks/useWeather";
 import { calcWaypointTimes, WAYPOINT_FRACTIONS } from "../lib/timing";
 import { ShareButton } from "../components/ShareButton";
-import ritt from "../data/ritt.json";
+import ritt from "../data/arrangements.json";
 
 export function RittPage() {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +24,7 @@ export function RittPage() {
 
   const rittData = ritt.find((r) => r.id === id) as RittEntry | undefined;
 
-  usePageTitle(rittData ? `${rittData.name} – Startstreken` : "Fant ikke ritt – Startstreken");
+  usePageTitle(rittData ? `${rittData.name} – Startstreken` : "Fant ikke arrangement – Startstreken");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,7 +83,7 @@ export function RittPage() {
   if (!rittData) {
     return (
       <div className="ritt-page ritt-page--not-found">
-        <p>Fant ikke ritt med id «{id}».</p>
+        <p>Fant ikke arrangement med id «{id}».</p>
         <Link to="../">Tilbake til oversikt</Link>
       </div>
     );
@@ -157,9 +157,9 @@ export function RittPage() {
             className={`ritt-page__bookmark-btn${planned ? " ritt-page__bookmark-btn--active" : ""}`}
             onClick={handleBookmarkToggle}
             aria-pressed={planned}
-            title={planned ? "Fjern fra mine ritt" : "Legg til mine ritt"}
+            title={planned ? "Fjern fra mine arrangement" : "Legg til mine arrangement"}
           >
-            {planned ? "📌 Mine ritt" : "📍 Legg til mine ritt"}
+            {planned ? "📌 Mine arrangement" : "📍 Legg til mine arrangement"}
           </button>
           <ShareButton />
         </div>

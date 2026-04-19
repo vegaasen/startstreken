@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { RittCard } from "../components/RittCard";
 import { useMyRitt } from "../hooks/useMyRitt";
 import { usePageTitle } from "../hooks/usePageTitle";
-import ritt from "../data/ritt.json";
+import ritt from "../data/arrangements.json";
 
 type Race = (typeof ritt)[number];
-type Discipline = "alle" | "landevei" | "terreng";
+type Discipline = "alle" | "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp";
 
 function groupByYearMonth(races: Race[]): Map<number, Map<number, Race[]>> {
   const sorted = [...races].sort(
@@ -58,6 +58,9 @@ const DISCIPLINE_LABELS: Record<Discipline, string> = {
   alle: "Alle",
   landevei: "Landevei",
   terreng: "Terreng",
+  langrenn: "Langrenn",
+  triathlon: "Triathlon",
+  ultraløp: "Ultraløp",
 };
 
 export function HomePage() {
@@ -66,8 +69,10 @@ export function HomePage() {
   const [discipline, setDiscipline] = useState<Discipline>("alle");
   const [search, setSearch] = useState("");
 
-  const totalLandevei = useMemo(() => ritt.filter((r) => r.discipline === "landevei").length, []);
-  const totalTerreng = useMemo(() => ritt.filter((r) => r.discipline === "terreng").length, []);
+  const totalSykkel = useMemo(() => ritt.filter((r) => r.discipline === "landevei" || r.discipline === "terreng").length, []);
+  const totalLangrenn = useMemo(() => ritt.filter((r) => r.discipline === "langrenn").length, []);
+  const totalLoping = useMemo(() => ritt.filter((r) => r.discipline === "ultraløp").length, []);
+  const totalTriathlon = useMemo(() => ritt.filter((r) => r.discipline === "triathlon").length, []);
 
   const searchQuery = search.trim().toLowerCase();
   const filtered = ritt
@@ -109,19 +114,21 @@ export function HomePage() {
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="home-page__hero">
-        <div className="home-page__hero-eyebrow">Norske sykkelritt</div>
-        <h1>Sjekk været.<br />Sykle smartere.</h1>
+        <div className="home-page__hero-eyebrow">Norske utholdenhetsarrangement</div>
+        <h1>Sjekk været.<br />Kom forberedt til start.</h1>
         <p className="home-page__hero-sub">
           Timebasert værvarsling og historiske klimasnitt for hvert punkt
           langs ruten — tilpasset din starttid.
         </p>
-        <a href="#alle-ritt" className="home-page__hero-cta">
-          Se alle ritt →
+        <a href="#alle-arrangement" className="home-page__hero-cta">
+          Se alle arrangement →
         </a>
         <div className="home-page__hero-stats">
-          <span><strong>{ritt.length}</strong> ritt totalt</span>
-          <span><strong>{totalLandevei}</strong> landevei</span>
-          <span><strong>{totalTerreng}</strong> terreng</span>
+          <span><strong>{ritt.length}</strong> arrangement totalt</span>
+          {totalSykkel > 0 && <span><strong>{totalSykkel}</strong> sykkel</span>}
+          {totalLangrenn > 0 && <span><strong>{totalLangrenn}</strong> langrenn</span>}
+          {totalLoping > 0 && <span><strong>{totalLoping}</strong> løping</span>}
+          {totalTriathlon > 0 && <span><strong>{totalTriathlon}</strong> triathlon</span>}
         </div>
       </section>
 
@@ -167,7 +174,7 @@ export function HomePage() {
               <li className="home-page__feature-visual-item">Timebasert varsel (0–16 dager)</li>
               <li className="home-page__feature-visual-item">Klimasnitt (historisk gjennomsnitt)</li>
               <li className="home-page__feature-visual-item">Smarte bekledningsråd basert på data</li>
-              <li className="home-page__feature-visual-item">Veirisiko (is, slaps, vått)</li>
+              <li className="home-page__feature-visual-item">Føreforhold (is, slaps, vått)</li>
             </ul>
           </div>
         </div>
@@ -175,8 +182,8 @@ export function HomePage() {
       </div>
 
       {/* ── Filter + search ───────────────────────────────────────────── */}
-      <div id="alle-ritt" className="home-page__filter">
-        {(["alle", "landevei", "terreng"] as Discipline[]).map((d) => (
+      <div id="alle-arrangement" className="home-page__filter">
+        {(["alle", "landevei", "terreng", "langrenn", "triathlon", "ultraløp"] as Discipline[]).map((d) => (
           <button
             key={d}
             className={`home-page__filter-pill${discipline === d ? " home-page__filter-pill--active" : ""}`}
@@ -188,17 +195,17 @@ export function HomePage() {
         <input
           type="search"
           className="home-page__search"
-          placeholder="Filtrer ritt…"
+          placeholder="Filtrer arrangement…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          aria-label="Filtrer ritt"
+          aria-label="Filtrer arrangement"
         />
       </div>
 
       {/* ── Mine ritt ─────────────────────────────────────────────────── */}
       {plannedRaces.length > 0 && (
         <section className="home-page__mine-section">
-          <h2 className="home-page__mine-heading">Mine ritt</h2>
+          <h2 className="home-page__mine-heading">Mine arrangement</h2>
           <div className="home-page__grid">
             {plannedRaces.map((r) => {
               const entry = getPlanned(r.id);
@@ -211,7 +218,7 @@ export function HomePage() {
                   officialDate={r.officialDate}
                   distance={r.distance}
                   region={r.region}
-                  discipline={r.discipline as "landevei" | "terreng"}
+                  discipline={r.discipline as "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp"}
                   displayDate={entry?.date}
                   countdown={formatCountdown(date)}
                   planned
@@ -236,7 +243,7 @@ export function HomePage() {
                 officialDate={r.officialDate}
                 distance={r.distance}
                 region={r.region}
-                discipline={r.discipline as "landevei" | "terreng"}
+                discipline={r.discipline as "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp"}
                 countdown={formatCountdown(r.officialDate)}
                 planned={isPlanned(r.id)}
                 onTogglePlanned={(e) => handleToggle(r.id, r.officialDate, e)}
@@ -249,7 +256,7 @@ export function HomePage() {
       {/* ── All ritt grid ─────────────────────────────────────────────── */}
       <main className="home-page__sections">
         {filtered.length === 0 && (
-          <p className="home-page__empty">Ingen ritt funnet.</p>
+          <p className="home-page__empty">Ingen arrangement funnet.</p>
         )}
         {years.map((year) => {
           const byMonth = grouped.get(year)!;
@@ -269,7 +276,7 @@ export function HomePage() {
                         officialDate={r.officialDate}
                         distance={r.distance}
                         region={r.region}
-                        discipline={r.discipline as "landevei" | "terreng"}
+                        discipline={r.discipline as "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp"}
                         planned={isPlanned(r.id)}
                         onTogglePlanned={(e) => handleToggle(r.id, r.officialDate, e)}
                       />
@@ -286,8 +293,8 @@ export function HomePage() {
       {nextRitt && (
         <div className="home-page__cta-banner">
           <div className="home-page__cta-banner-text">
-            <div className="home-page__cta-banner-eyebrow">Neste ritt</div>
-            <h2>Klar for årets ritt?</h2>
+            <div className="home-page__cta-banner-eyebrow">Neste arrangement</div>
+            <h2>Klar for årets arrangement?</h2>
             <p>
               {nextRitt.name} — {nextRitt.distance} km i {nextRitt.region}.{" "}
               {formatCountdown(nextRitt.officialDate)}.

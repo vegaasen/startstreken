@@ -31,7 +31,7 @@ export function DatePicker({ value, onChange, officialDate }: Props) {
         )}
       </div>
       {isOfficialDate && (
-        <div className="date-picker__hint">Dette er den offisielle ritt-datoen</div>
+        <div className="date-picker__hint">Dette er den offisielle startdatoen</div>
       )}
     </div>
   );

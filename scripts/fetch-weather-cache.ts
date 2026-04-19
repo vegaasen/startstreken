@@ -1,6 +1,6 @@
 /**
  * Build-time script: pre-fetches all climate-average and historical-by-year
- * weather data for every ritt in ritt.json, using the Open-Meteo archive API.
+ * weather data for every arrangement in arrangements.json, using the Open-Meteo archive API.
  *
  * Writes the result to src/data/weather-cache.json.
  *
@@ -191,7 +191,7 @@ function statisticalMode(vals: (number | null)[]): number {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  const rittPath = resolve(__dirname, "../src/data/ritt.json");
+  const rittPath = resolve(__dirname, "../src/data/arrangements.json");
   const outputPath = resolve(__dirname, "../src/data/weather-cache.json");
 
   const ritts: Ritt[] = JSON.parse(readFileSync(rittPath, "utf-8")) as Ritt[];

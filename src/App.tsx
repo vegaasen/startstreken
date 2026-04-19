@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 function SiteFooter() {
   return (
     <footer className="site-footer">
-      <span>Startstreken — værmeldinger for norske sykkelritt</span>
+      <span>Startstreken — værmeldinger for norske utholdenhetsarrangement</span>
       <span>
         Data:{" "}
         <a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">
@@ -32,7 +32,7 @@ function SiteFooter() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Foreslå et ritt
+          Foreslå et arrangement
         </a>
       </span>
       <span>

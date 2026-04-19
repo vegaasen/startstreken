@@ -1,12 +1,12 @@
-name: Foreslå ett ritt
-description: Foreslå et norsk sykkelritt som mangler i Startstreken
-title: "Forslag: [Ritt-navn]"
+name: Foreslå ett arrangement
+description: Foreslå et norsk utholdenhetsarrangement (sykkelritt, langrenn, triathlon, ultraløp) som mangler i Startstreken
+title: "Forslag: [Arrangementnavn]"
 labels: ["suggestion"]
 body:
   - type: input
     id: name
     attributes:
-      label: Navn på rittet
+      label: Navn på arrangementet
       placeholder: f.eks. Jotunheimen Rundt
     validations:
       required: true

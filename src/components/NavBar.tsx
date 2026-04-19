@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import ritt from "../data/ritt.json";
+import ritt from "../data/arrangements.json";
 
 type Race = (typeof ritt)[number];
 
@@ -54,10 +54,10 @@ export function NavBar() {
             className="site-nav__select"
             value={currentId}
             onChange={handleChange}
-            aria-label="Velg ritt"
+            aria-label="Velg arrangement"
           >
             <option value="" disabled>
-              Velg ritt…
+              Velg arrangement…
             </option>
             {years.map((year) => (
               <optgroup key={year} label={String(year)}>

@@ -6,7 +6,7 @@ type Props = {
   officialDate: string;
   distance: number;
   region: string;
-  discipline: "landevei" | "terreng";
+  discipline: "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp";
   /** Override the displayed date (e.g. show saved planned date instead of official date) */
   displayDate?: string;
   planned?: boolean;
@@ -15,9 +15,14 @@ type Props = {
   countdown?: string;
 };
 
-const DISCIPLINE_LABEL: Record<"landevei" | "terreng", string> = {
+type Discipline = "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp";
+
+const DISCIPLINE_LABEL: Record<Discipline, string> = {
   landevei: "Landevei",
   terreng: "Terreng",
+  langrenn: "Langrenn",
+  triathlon: "Triathlon",
+  ultraløp: "Ultraløp",
 };
 
 export function RittCard({
@@ -63,8 +68,8 @@ export function RittCard({
           <button
             className={`ritt-card__bookmark${planned ? " ritt-card__bookmark--active" : ""}`}
             onClick={onTogglePlanned}
-            title={planned ? "Fjern fra mine ritt" : "Legg til mine ritt"}
-            aria-label={planned ? "Fjern fra mine ritt" : "Legg til mine ritt"}
+            title={planned ? "Fjern fra mine arrangement" : "Legg til mine arrangement"}
+            aria-label={planned ? "Fjern fra mine arrangement" : "Legg til mine arrangement"}
             aria-pressed={planned}
           >
             {planned ? "📌" : "📍"}

@@ -96,7 +96,7 @@ export function HistoricalWeatherTable({ waypoints, officialDate }: Props) {
   return (
     <details className="history-table__details">
       <summary className="history-table__summary" onClick={handleToggle}>
-        Historisk vær på rittdagen (2015–2024)
+        Historisk vær på startdagen (2015–2024)
       </summary>
       <div className="history-table__wrapper">
         <table className="history-table">
