@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { RittCard } from "../components/RittCard";
+import { useFilterContext } from "../context/useFilterContext";
 import { useMyRitt } from "../hooks/useMyRitt";
 import { usePageTitle } from "../hooks/usePageTitle";
 import { allArrangements as ritt, getNextRitt, type RittEntry } from "../lib/ritt";
@@ -56,7 +57,7 @@ const DISCIPLINE_LABELS: Record<Discipline, string> = {
 export function HomePage() {
   usePageTitle("Startstreken");
   const { plannedIds, isPlanned, getPlanned, add, remove } = useMyRitt();
-  const [discipline, setDiscipline] = useState<Discipline>("alle");
+  const { discipline, setDiscipline } = useFilterContext();
   const [search, setSearch] = useState("");
 
   const totalSykkel = useMemo(() => ritt.filter((r) => r.discipline === "landevei" || r.discipline === "terreng").length, []);
