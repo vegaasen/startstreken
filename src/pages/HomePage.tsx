@@ -228,6 +228,7 @@ export function HomePage() {
                   displayDate={entry?.date}
                   countdown={formatCountdown(date)}
                   planned
+                  isPast={daysUntil(date) < 0}
                   onTogglePlanned={(e) => handleToggle(r.id, r.officialDate, e)}
                 />
               );
@@ -284,6 +285,7 @@ export function HomePage() {
                         region={r.region}
                         discipline={r.discipline}
                         planned={isPlanned(r.id)}
+                        isPast={daysUntil(r.officialDate) < 0}
                         onTogglePlanned={(e) => handleToggle(r.id, r.officialDate, e)}
                       />
                     ))}

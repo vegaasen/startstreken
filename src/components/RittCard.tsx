@@ -14,6 +14,8 @@ type Props = {
   onTogglePlanned?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   /** Countdown string, e.g. "om 3 dager" or "i dag" */
   countdown?: string;
+  /** True when the race date has already passed */
+  isPast?: boolean;
 };
 
 const DISCIPLINE_LABEL: Record<Discipline, string> = {
@@ -35,6 +37,7 @@ export function RittCard({
   planned = false,
   onTogglePlanned,
   countdown,
+  isPast = false,
 }: Props) {
   const dateStr = displayDate ?? officialDate;
   const formattedDate = new Date(dateStr + "T00:00:00").toLocaleDateString("nb-NO", {
@@ -46,7 +49,7 @@ export function RittCard({
   return (
     <Link
       to={`ritt/${id}`}
-      className={`ritt-card${planned ? " ritt-card--planned" : ""}`}
+      className={`ritt-card${planned ? " ritt-card--planned" : ""}${isPast ? " ritt-card--past" : ""}`}
     >
       <div className="ritt-card__name">{name}</div>
       <div className="ritt-card__meta">
