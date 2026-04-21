@@ -55,7 +55,7 @@ const DISCIPLINE_LABELS: Record<Discipline, string> = {
 };
 
 export function HomePage() {
-  usePageTitle("Startstreken");
+  usePageTitle("Løypevær");
   const { plannedIds, isPlanned, getPlanned, add, remove } = useMyRitt();
   const { discipline, setDiscipline } = useFilterContext();
   const [search, setSearch] = useState("");

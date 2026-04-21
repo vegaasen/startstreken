@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const STORAGE_KEY = "startstreken:mine-ritt";
+const STORAGE_KEY = "loypevaer:mine-ritt";
 
 export type PlannedEntry = {
   date: string;

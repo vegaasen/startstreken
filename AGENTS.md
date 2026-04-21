@@ -4,7 +4,7 @@ Guidelines for AI coding agents working in this repository.
 
 ## What this project is
 
-**Startstreken** is a React + TypeScript single-page app that shows weather forecasts and historical climate averages at key waypoints along Norwegian endurance races — sykkelritt, langrenn, triathlon, and ultraløp. It uses the free [Open-Meteo](https://open-meteo.com) API — no API key needed. The app is deployed to GitHub Pages at [vegaasen.github.io/startstreken](https://vegaasen.github.io/startstreken/).
+**Løypevær** is a React + TypeScript single-page app that shows weather forecasts and historical climate averages at key waypoints along Norwegian endurance races — sykkelritt, langrenn, triathlon, and ultraløp. It uses the free [Open-Meteo](https://open-meteo.com) API — no API key needed. The app is deployed to GitHub Pages at [vegaasen.github.io/loypevaer](https://vegaasen.github.io/loypevaer/).
 
 ## Commands
 

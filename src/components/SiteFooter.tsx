@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <span>Startstreken — værmeldinger for norske utholdenhetsarrangement</span>
+      <span>Løypevær — værmeldinger for norske utholdenhetsarrangement</span>
       <span>
         Data:{" "}
         <a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">

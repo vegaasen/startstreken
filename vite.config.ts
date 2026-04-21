@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
-// Base path is /startstreken/ only when deploying to GitHub Pages.
+// Base path is /loypevaer/ only when deploying to GitHub Pages.
 // AWS (CloudFront + custom domain) and local dev both use /.
-const base = process.env.DEPLOY_TARGET === 'github-pages' ? '/startstreken/' : '/'
+const base = process.env.DEPLOY_TARGET === 'github-pages' ? '/loypevaer/' : '/'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,8 +17,8 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'Startstreken',
-        short_name: 'Startstreken',
+        name: 'Løypevær',
+        short_name: 'Løypevær',
         description: 'Sjekk været langs ruten for norske sykkelritt og langrenn.',
         theme_color: '#aa3bff',
         background_color: '#ffffff',

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { usePageTitle } from "../hooks/usePageTitle";
 
 export function NotFoundPage() {
-  usePageTitle("Siden finnes ikke – Startstreken");
+  usePageTitle("Siden finnes ikke – Løypevær");
 
   return (
     <div className="ritt-page ritt-page--not-found">

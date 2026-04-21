@@ -163,7 +163,7 @@ async function geocode(query: string): Promise<NominatimResult | null> {
     const res = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`, {
       headers: {
         // Nominatim requires a meaningful User-Agent
-        "User-Agent": "startstreken-triathlon-sync/1.0 (github.com/vegaasen/startstreken)",
+        "User-Agent": "loypevaer-triathlon-sync/1.0 (github.com/vegaasen/loypevaer)",
       },
     });
     if (!res.ok) return null;
@@ -230,7 +230,7 @@ async function main() {
     try {
       await sleep(500); // be polite
       const detailRes = await fetch(eventUrl, {
-        headers: { "User-Agent": "startstreken-triathlon-sync/1.0" },
+        headers: { "User-Agent": "loypevaer-triathlon-sync/1.0" },
       });
       if (detailRes.ok) {
         const html = await detailRes.text();

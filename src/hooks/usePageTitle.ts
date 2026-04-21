@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_TITLE = "Startstreken";
+const DEFAULT_TITLE = "Løypevær";
 
 export function usePageTitle(title: string): void {
   useEffect(() => {

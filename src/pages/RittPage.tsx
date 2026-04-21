@@ -23,7 +23,7 @@ export function RittPage() {
 
   const rittData = allArrangements.find((r) => r.id === id);
 
-  usePageTitle(rittData ? `${rittData.name} – Startstreken` : "Fant ikke arrangement – Startstreken");
+  usePageTitle(rittData ? `${rittData.name} – Løypevær` : "Fant ikke arrangement – Løypevær");
 
   useEffect(() => {
     window.scrollTo(0, 0);

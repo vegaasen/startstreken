@@ -1,6 +1,6 @@
 {
-  "name": "Startstreken",
-  "short_name": "Startstreken",
+  "name": "Løypevær",
+  "short_name": "Løypevær",
   "description": "Sjekk været langs ruten for norske sykkelritt, langrenn, triathlon og ultraløp.",
   "start_url": "/",
   "display": "standalone",

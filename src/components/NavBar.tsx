@@ -45,7 +45,7 @@ export function NavBar() {
     <div className="site-nav-wrapper">
       <nav className="site-nav">
         <Link to="/" className="site-nav__logo">
-          Startstreken
+          Løypevær
         </Link>
         <div className="site-nav__selector">
           <select
