@@ -4,16 +4,19 @@ Guidelines for AI coding agents working in this repository.
 
 ## What this project is
 
-**Løypevær** is a React + TypeScript single-page app that shows weather forecasts and historical climate averages at key waypoints along Norwegian endurance races — sykkelritt, langrenn, triathlon, and ultraløp. It uses the free [Open-Meteo](https://open-meteo.com) API — no API key needed. The app is deployed to GitHub Pages at [vegaasen.github.io/loypevaer](https://vegaasen.github.io/loypevaer/).
+**Løypevær** is a React + TypeScript single-page app that shows weather forecasts and historical climate averages at key waypoints along Norwegian endurance races — sykkelritt, langrenn, triathlon, and ultraløp. It uses the free [Open-Meteo](https://open-meteo.com) API — no API key needed. The app is deployed to both GitHub Pages at [vegaasen.github.io/loypevaer](https://vegaasen.github.io/loypevaer/) and via AWS (S3 + CloudFront).
 
 ## Commands
 
 ```bash
 bun install                # install dependencies
 bun run dev                # start dev server (Vite)
-bun run build              # typecheck (tsc -b) + production build
+bun run build              # typecheck (tsc -b) + production build (also auto-runs generate-sitemap as prebuild)
 bun run lint               # ESLint with type-aware rules
 bun run fetch-weather      # refresh src/data/weather-cache.json from Open-Meteo
+bun run fetch-triathlon    # refresh src/data/triathlon-events.json
+bun run generate-sitemap   # generate sitemap (also runs automatically before every build)
+bun run preview            # preview production build locally (vite preview)
 ```
 
 **There is no test suite yet.** Do not run `vitest`, `jest`, or `npm test` — they will fail. Adding Vitest is an open roadmap item.
@@ -35,18 +38,21 @@ bun run lint && bun run build
 ## Project layout
 
 ```
-src/data/ritt.json           # Race definitions — edit this to add/modify a ritt
+src/data/arrangements.json   # Race definitions — edit this to add/modify a ritt
+src/data/triathlon-events.json # Auto-generated; do NOT manually edit
 src/data/weather-cache.json  # Auto-generated nightly; do NOT manually edit
+src/context/                 # React context providers and hooks
 src/lib/                     # Pure utility functions (no React)
 src/hooks/                   # React hooks (TanStack Query wrappers + localStorage)
 src/components/              # UI components
 src/pages/                   # Route-level page components
 scripts/                     # Node/Bun scripts run outside the browser bundle
+infra/                       # Terraform configuration for AWS (S3, CloudFront, ACM, Route53)
 ```
 
 ## Adding a ritt
 
-Edit `src/data/ritt.json`. Each entry must follow the existing schema:
+Edit `src/data/arrangements.json`. Each entry must follow the existing schema:
 
 ```jsonc
 {
@@ -72,12 +78,16 @@ Waypoint coordinates should be verified against GPX files or race maps — many 
 
 `src/data/weather-cache.json` is written by `scripts/fetch-weather-cache.ts` and committed by a nightly GitHub Actions workflow (`.github/workflows/refresh-weather.yml`). It holds pre-fetched historical averages so the app works without hitting the API on every load for far-future dates. Do not hand-edit this file.
 
+`src/data/triathlon-events.json` is written by `scripts/fetch-triathlon-events.ts` and committed by `.github/workflows/refresh-triathlon.yml`. Do not hand-edit this file.
+
 ## CI / deploy
 
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `ci.yml` | push/PR (non-doc files) | lint + build |
 | `pages.yml` | push to `main` (non-doc files) | build + deploy to GitHub Pages |
+| `deploy-aws.yml` | push to `main` (non-doc files) | build + deploy to AWS (S3 + CloudFront) |
 | `refresh-weather.yml` | nightly 03:00 UTC + manual | fetch weather cache + commit |
+| `refresh-triathlon.yml` | scheduled + manual | fetch triathlon events + commit |
 
 Markdown files and issue templates are excluded from triggering CI and deploy via `paths-ignore`.
