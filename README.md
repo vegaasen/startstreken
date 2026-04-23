@@ -181,3 +181,4 @@ scripts/
 - Race calendar: [sykling.no](https://sykling.no/sykkelritt/terminliste/)
 - EQTimer APIs: https://api.eqtiming.com/docs#!/Event
 - Route waypoints: manually curated from maps and race websites
+
