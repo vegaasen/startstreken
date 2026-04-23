@@ -782,6 +782,42 @@
     ]
   },
   {
+    "id": "jotunheimen-trail-run-ultra",
+    "name": "Jotunheimen Trail Run Ultra",
+    "discipline": "ultraløp",
+    "officialDate": "2026-07-31",
+    "officialStartTime": "06:00",
+    "distance": 73,
+    "elevationGain": 2500,
+    "region": "Innlandet",
+    "url": "https://www.jotunheimentrailrun.com/ultra",
+    "waypoints": [
+      { "label": "Start/Mål – Bygdin", "lat": 61.32769, "lon": 8.79804, "altitude": 1059 },
+      { "label": "~18 km", "lat": 61.31942, "lon": 8.61085, "altitude": 1240 },
+      { "label": "Fondsbu (38 km)", "lat": 61.35678, "lon": 8.31781, "altitude": 1327 },
+      { "label": "Torfinnsbu (57 km)", "lat": 61.35904, "lon": 8.55740, "altitude": 1129 },
+      { "label": "Mål – Bygdin", "lat": 61.32769, "lon": 8.79804, "altitude": 1059 }
+    ]
+  },
+  {
+    "id": "blefjellsbeste",
+    "name": "Blefjellsbeste",
+    "discipline": "ultraløp",
+    "officialDate": "2026-07-24",
+    "officialStartTime": "22:00",
+    "distance": 96,
+    "elevationGain": 3400,
+    "region": "Numedal",
+    "url": "https://blefjellsbeste.com/",
+    "waypoints": [
+      { "label": "Start/Mål – Bestebu", "lat": 59.878, "lon": 9.268, "altitude": 730 },
+      { "label": "~24 km – Blefjell vest", "lat": 59.905, "lon": 9.175, "altitude": 1100 },
+      { "label": "~48 km – Nordmannsslepa nord", "lat": 59.953, "lon": 9.220, "altitude": 1050 },
+      { "label": "~72 km – Blefjell aust", "lat": 59.920, "lon": 9.310, "altitude": 980 },
+      { "label": "Mål – Bestebu", "lat": 59.878, "lon": 9.268, "altitude": 730 }
+    ]
+  },
+  {
     "id": "vatternrundan",
     "name": "Vätternrundan",
     "discipline": "landevei",
