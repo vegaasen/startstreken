@@ -251,6 +251,15 @@ code {
   }
 }
 
+.site-nav__divider {
+  display: inline-block;
+  width: 1.5px;
+  height: 20px;
+  background: var(--border);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
 .site-nav__gpx-link {
   font: inherit;
   font-size: 14px;

@@ -40,10 +40,11 @@ export function NavBar() {
         <Link to="/" className="site-nav__logo">
           Løypevær
         </Link>
-        <Link to="/gpx" className="site-nav__gpx-link">
-          GPX-løype
-        </Link>
         <div className="site-nav__selector">
+          <Link to="/gpx" className="site-nav__gpx-link">
+            GPX-løype
+          </Link>
+          <span className="site-nav__divider" aria-hidden="true" />
           <select
             className="site-nav__select"
             value={currentId}
