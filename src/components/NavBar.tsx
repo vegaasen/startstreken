@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { allArrangements as ritt, getNextRitt, type Discipline, type RittEntry } from "../lib/ritt";
+import { allArrangements as ritt, getNextRitt, type Discipline, type RittEntry } from "../lib/arrangements";
 import { DISCIPLINE_LABEL_WITH_EMOJI } from "../lib/disciplines";
 
 type Race = RittEntry;

@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { EventCard } from "../components/EventCard";
 import { useFilterContext } from "../context/useFilterContext";
 import { useMyEvents } from "../hooks/useMyEvents";
-import { allArrangements as ritt, getNextRitt, type RittEntry } from "../lib/ritt";
+import { allArrangements as ritt, getNextRitt, type RittEntry } from "../lib/arrangements";
 import { FILTER_DISCIPLINE_LABEL } from "../lib/disciplines";
 import { SITE_URL } from "../lib/seo";
 

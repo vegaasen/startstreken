@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { type Discipline } from "../lib/ritt";
+import { type Discipline } from "../lib/arrangements";
 import { DISCIPLINE_LABEL } from "../lib/disciplines";
 
 type Props = {

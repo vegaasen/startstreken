@@ -1192,6 +1192,18 @@ code {
   }
 }
 
+.ritt-card__discipline--løping {
+  background: color-mix(in srgb, #2e7d4f 12%, transparent);
+  color: #2e7d4f;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ritt-card__discipline--løping {
+    background: color-mix(in srgb, #5abf82 12%, transparent);
+    color: #5abf82;
+  }
+}
+
 /* ─── Difficulty badge (shared colours) ─────────────────────────────── */
 
 .ritt-card__difficulty,

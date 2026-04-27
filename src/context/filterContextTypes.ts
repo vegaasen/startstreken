@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { Discipline } from "../lib/ritt";
+import type { Discipline } from "../lib/arrangements";
 
 export type FilterDiscipline = "alle" | Discipline;
 

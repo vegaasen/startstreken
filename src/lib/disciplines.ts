@@ -1,4 +1,4 @@
-import type { Discipline } from "./ritt";
+import type { Discipline } from "./arrangements";
 
 export type FilterDiscipline = "alle" | Discipline;
 
@@ -9,6 +9,7 @@ export const DISCIPLINE_LABEL: Record<Discipline, string> = {
   langrenn: "Langrenn",
   triathlon: "Triathlon",
   ultraløp: "Ultraløp",
+  løping: "Løping",
 };
 
 /** Labels with emoji, used in grouped selects (e.g. NavBar). */
@@ -18,6 +19,7 @@ export const DISCIPLINE_LABEL_WITH_EMOJI: Record<Discipline, string> = {
   langrenn: "⛷️ Langrenn",
   triathlon: "🏊 Triathlon",
   ultraløp: "🏃 Ultraløp",
+  løping: "🏃 Løping",
 };
 
 /** Labels including the "alle" catch-all filter, used in filter pills. */

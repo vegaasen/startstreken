@@ -13,7 +13,7 @@ import {
   fetchGpxFromUrl,
   type GpxTrackPoint,
 } from "../lib/gpx";
-import { computeElevationGain } from "../lib/ritt";
+import { computeElevationGain } from "../lib/arrangements";
 import type { Waypoint } from "../lib/weather";
 
 const TODAY = new Date().toISOString().slice(0, 10);

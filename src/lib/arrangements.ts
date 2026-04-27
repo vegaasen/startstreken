@@ -8,7 +8,7 @@ export const allArrangements: RittEntry[] = [
   ...(triathlonData.events as RittEntry[]),
 ];
 
-export type Discipline = "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp";
+export type Discipline = "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp" | "løping";
 
 export interface RittEntry {
   id: string;

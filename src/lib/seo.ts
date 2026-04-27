@@ -24,6 +24,8 @@ export function disciplineToSport(discipline: string): string {
       return "Triathlon";
     case "ultraløp":
       return "Ultramarathon";
+    case "løping":
+      return "Running";
     default:
       return "Endurance Sports";
   }

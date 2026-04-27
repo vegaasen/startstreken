@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Waypoint } from "../lib/weather";
-import type { Discipline } from "../lib/ritt";
+import type { Discipline } from "../lib/arrangements";
 
 type Props = {
   waypoints: Waypoint[];
@@ -24,6 +24,7 @@ function osrmProfile(discipline: Discipline): string {
       return "bike"; // MTB — bike profile
     case "langrenn":
     case "ultraløp":
+    case "løping":
       return "foot"; // ski/running use pedestrian/foot routing
     case "triathlon":
       return "foot"; // mixed; foot is safest fallback for swim/run legs

@@ -9,7 +9,7 @@ import { HistoricalWeatherTable } from "../components/HistoricalWeatherTable";
 import { GearSuggestion } from "../components/GearSuggestion";
 import { ElevationProfile } from "../components/ElevationProfile";
 import { ErrorBoundary } from "../components/ErrorBoundary";
-import { computeElevationGain, allArrangements } from "../lib/ritt";
+import { computeElevationGain, allArrangements } from "../lib/arrangements";
 import { physicalScore, weatherAdjustment, scoreToLabel } from "../lib/difficulty";
 import { SITE_URL, disciplineToSport } from "../lib/seo";
 import { useMyEvents } from "../hooks/useMyEvents";
