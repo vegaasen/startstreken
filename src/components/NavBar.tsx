@@ -42,7 +42,7 @@ export function NavBar() {
         </Link>
         <div className="site-nav__selector">
           <Link to="/gpx" className="site-nav__gpx-link">
-            GPX-løype
+            Egen løype
           </Link>
           <span className="site-nav__divider" aria-hidden="true" />
           <select

@@ -384,6 +384,18 @@ code {
   }
 }
 
+.gpx-upload__hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+
+  & span {
+    font-weight: 500;
+    color: var(--text-h);
+  }
+}
+
 .gpx-upload__error {
   color: var(--warning);
   font-size: 14px;

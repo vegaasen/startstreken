@@ -122,16 +122,16 @@ export function GpxPage() {
   return (
     <div className="ritt-page">
       <Helmet>
-        <title>GPX-værvarsеl – Løypevær</title>
-        <meta name="description" content="Last opp en GPX-fil og se værvarselet langs ruten din." />
+        <title>Værvarsеl for din løype – Løypevær</title>
+        <meta name="description" content="Last opp ruten din og få værvarsеl langs hele løypa — fra start til mål." />
       </Helmet>
 
       <Link to="/" className="ritt-page__back-link">← Alle arrangement</Link>
 
       <header className="ritt-page__header">
-        <h1>Værvarsеl for GPX</h1>
+        <h1>Værvarsеl for din løype</h1>
         <p className="ritt-page__subtitle">
-          Last opp en GPX-fil eller oppgi en GPX-URL for å se værvarselet langs ruten.
+          Last opp ruten din og se værvarselet langs veien — fra start til mål.
         </p>
       </header>
 
@@ -151,8 +151,8 @@ export function GpxPage() {
               <path d="M12 16V4m0 0L8 8m4-4 4 4" />
               <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
             </svg>
-            <p className="gpx-upload__primary">Dra og slipp en GPX-fil her</p>
-            <p className="gpx-upload__secondary">(klikk for å velge)</p>
+            <p className="gpx-upload__primary">Dra og slipp ruten din her</p>
+            <p className="gpx-upload__secondary">(.gpx-fil — klikk for å velge)</p>
             <input
               ref={fileInputRef}
               type="file"
@@ -174,14 +174,17 @@ export function GpxPage() {
               onKeyDown={(e) => { if (e.key === "Enter") void handleUrlLoad(); }}
               aria-label="URL til GPX-fil"
             />
+            <button
+                className="gpx-upload__url-btn"
+                onClick={() => void handleUrlLoad()}
+                disabled={loading || !urlInput.trim()}
+            >
+              {loading ? "Laster…" : "Last inn"}
+            </button>
           </div>
-          <button
-              className="gpx-upload__url-btn"
-              onClick={() => void handleUrlLoad()}
-              disabled={loading || !urlInput.trim()}
-          >
-            {loading ? "Laster…" : "Last inn"}
-          </button>
+          <p className="gpx-upload__hint">
+            Eksporter GPX fra <span>Strava</span>, <span>Garmin Connect</span>, <span>Komoot</span> eller lignende
+          </p>
 
           {error && <p className="gpx-upload__error" role="alert">{error}</p>}
         </section>
