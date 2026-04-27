@@ -1,5 +1,5 @@
 /**
- * Build-time script: generates public/sitemap.xml from src/data/ritt.json.
+ * Build-time script: generates public/sitemap.xml from src/data/arrangements.json.
  *
  * Usage:
  *   bun scripts/generate-sitemap.ts
@@ -11,13 +11,15 @@ import { writeFileSync } from "fs";
 import { resolve } from "path";
 import ritt from "../src/data/arrangements.json" with { type: "json" };
 
-const BASE_URL = "https://vegaasen.github.io/loypevaer";
-const today = new Date().toISOString().split("T")[0];
+// Punycode form — XML should use ASCII-safe URLs.
+const BASE_URL = "https://www.xn--lypevaer-d8a.no";
 
 type RittEntry = {
   id: string;
   officialDate: string;
 };
+
+const today = new Date().toISOString().split("T")[0];
 
 const urls: string[] = [
   // Homepage
@@ -28,11 +30,19 @@ const urls: string[] = [
     <priority>1.0</priority>
   </url>`,
 
+  // GPX upload page
+  `  <url>
+    <loc>${BASE_URL}/gpx</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`,
+
   // One entry per arrangement
   ...(ritt as RittEntry[]).map(
     (r) => `  <url>
     <loc>${BASE_URL}/arrangement/${r.id}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${r.officialDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`
@@ -47,4 +57,4 @@ ${urls.join("\n")}
 
 const outPath = resolve(import.meta.dirname, "../public/sitemap.xml");
 writeFileSync(outPath, xml, "utf-8");
-console.log(`Sitemap written to ${outPath} (${(ritt as RittEntry[]).length + 1} URLs)`);
+console.log(`Sitemap written to ${outPath} (${(ritt as RittEntry[]).length + 2} URLs)`);

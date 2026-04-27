@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vegaasen.github.io/loypevaer/sitemap.xml
+Sitemap: https://www.xn--lypevaer-d8a.no/sitemap.xml

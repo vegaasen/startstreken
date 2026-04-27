@@ -1,296 +1,302 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vegaasen.github.io/loypevaer</loc>
+    <loc>https://www.xn--lypevaer-d8a.no</loc>
     <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/birkebeinerrittet</loc>
+    <loc>https://www.xn--lypevaer-d8a.no/gpx</loc>
     <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/birkebeinerrittet</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/styrkeproven</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/styrkeproven</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/jotunheimen-rundt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/jotunheimen-rundt</loc>
+    <lastmod>2026-06-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/nordsjorittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/nordsjorittet</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/grenserittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/grenserittet</loc>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/valdresrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/valdresrittet</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/mjosrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/mjosrittet</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/haugastol-bergen</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/haugastol-bergen</loc>
+    <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/rallarvegen</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/rallarvegen</loc>
+    <lastmod>2025-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/lysebotn-opp</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/lysebotn-opp</loc>
+    <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/bergen-voss</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/bergen-voss</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/gravel-birken</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/gravel-birken</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/halv-birken</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/halv-birken</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/nordsjorittet-jaeren</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/nordsjorittet-jaeren</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/letape-trondheim</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/letape-trondheim</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/nordmarka-rundt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/nordmarka-rundt</loc>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/color-line-tour</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/color-line-tour</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/tyrifjorden-rundt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/tyrifjorden-rundt</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/eikerrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/eikerrittet</loc>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/stenhoggerrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/stenhoggerrittet</loc>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/garborgriket-rundt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/garborgriket-rundt</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/victoriarunden</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/victoriarunden</loc>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/haugesund-sauda</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/haugesund-sauda</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/randsfjorden-rundt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/randsfjorden-rundt</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/tour-de-froya</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/tour-de-froya</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/elgrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/elgrittet</loc>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/skjaergaardsrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/skjaergaardsrittet</loc>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/obos-terrengsykkelrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/obos-terrengsykkelrittet</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/tour-de-lyngen</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/tour-de-lyngen</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/midnattsolrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/midnattsolrittet</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/skjebergrittet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/skjebergrittet</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/trysil-knut-gravel</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/trysil-knut-gravel</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/sjusjorettet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/sjusjorettet</loc>
+    <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/oyungen-rundt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/oyungen-rundt</loc>
+    <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/lysebotn-bryne</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/lysebotn-bryne</loc>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/birkebeinerrennet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/birkebeinerrennet</loc>
+    <lastmod>2026-03-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/skoytebirken</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/skoytebirken</loc>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/holmenkollmarsjen</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/holmenkollmarsjen</loc>
+    <lastmod>2026-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/skarverennet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/skarverennet</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/lofoten-ultratrail-100m</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/lofoten-ultratrail-100m</loc>
+    <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/lofoten-ultratrail-50m</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/lofoten-ultratrail-50m</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/ultrabirken-lop</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/ultrabirken-lop</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/ecotrail-oslo</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/ecotrail-oslo</loc>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/ultrabirken</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/ultrabirken</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/halvvatternrundan</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/halvvatternrundan</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/jotunheimen-trail-run-ultra</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/jotunheimen-trail-run-ultra</loc>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/blefjellsbeste</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/blefjellsbeste</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vegaasen.github.io/loypevaer/arrangement/vatternrundan</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://www.xn--lypevaer-d8a.no/arrangement/vatternrundan</loc>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

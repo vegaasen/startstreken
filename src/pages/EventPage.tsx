@@ -11,6 +11,7 @@ import { ElevationProfile } from "../components/ElevationProfile";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 import { computeElevationGain, allArrangements } from "../lib/ritt";
 import { physicalScore, weatherAdjustment, scoreToLabel } from "../lib/difficulty";
+import { SITE_URL, disciplineToSport } from "../lib/seo";
 import { useMyEvents } from "../hooks/useMyEvents";
 import { useWeather } from "../hooks/useWeather";
 import { calcWaypointTimes, WAYPOINT_FRACTIONS } from "../lib/timing";
@@ -29,13 +30,15 @@ export function EventPage() {
 
   const rittData = allArrangements.find((r) => r.id === id);
 
-  const BASE_URL = "https://vegaasen.github.io/loypevaer";
-  const pageUrl = rittData ? `${BASE_URL}/arrangement/${rittData.id}` : BASE_URL;
+  const pageUrl = rittData ? `${SITE_URL}/arrangement/${rittData.id}` : SITE_URL;
   const pageTitle = rittData
     ? `${rittData.name} – Løypevær`
     : "Fant ikke arrangement – Løypevær";
+  const rittYear = rittData
+    ? new Date(rittData.officialDate + "T00:00:00").getFullYear()
+    : null;
   const pageDescription = rittData
-    ? `Sjekk værvarselet for ${rittData.name} — ${rittData.distance} km i ${rittData.region}. Timebasert vær for hvert punkt langs ruten, tilpasset din starttid.`
+    ? `Vær og klimasnitt for ${rittData.name} ${rittYear} – ${rittData.distanceLabel ?? `${rittData.distance} km`}, ${rittData.elevationGain} hm i ${rittData.region}. Sjekk temperatur, vind og nedbør for hvert punkt langs løypa.`
     : undefined;
 
   useEffect(() => {
@@ -148,6 +151,27 @@ export function EventPage() {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={pageTitle} />
         {pageDescription && <meta name="twitter:description" content={pageDescription} />}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SportsEvent",
+            name: rittData.name,
+            startDate: rittData.officialDate,
+            description: pageDescription,
+            url: pageUrl,
+            sport: disciplineToSport(rittData.discipline),
+            location: {
+              "@type": "Place",
+              name: rittData.region,
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: rittData.waypoints[0].lat,
+                longitude: rittData.waypoints[0].lon,
+              },
+            },
+            ...(rittData.url ? { sameAs: rittData.url } : {}),
+          })}
+        </script>
       </Helmet>
       <Link to="/" className="ritt-page__back-link">← Alle arrangement</Link>
       <header className="ritt-page__header">

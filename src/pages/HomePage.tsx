@@ -6,6 +6,7 @@ import { useFilterContext } from "../context/useFilterContext";
 import { useMyEvents } from "../hooks/useMyEvents";
 import { allArrangements as ritt, getNextRitt, type RittEntry } from "../lib/ritt";
 import { FILTER_DISCIPLINE_LABEL } from "../lib/disciplines";
+import { SITE_URL } from "../lib/seo";
 
 type Discipline = "alle" | "landevei" | "terreng" | "langrenn" | "triathlon" | "ultraløp";
 
@@ -47,7 +48,6 @@ function formatCountdown(dateStr: string): string {
 }
 
 export function HomePage() {
-  const BASE_URL = "https://vegaasen.github.io/loypevaer";
   const description =
     `Værvarsler og historiske klimasnitt for ${ritt.length} norske utholdenhetsarrangement — sykkelritt, langrenn, triathlon og ultraløp. Timebasert vær for hvert punkt langs ruten.`;
 
@@ -115,15 +115,25 @@ export function HomePage() {
       <Helmet>
         <title>Løypevær – Vær langs ruten for norske utholdenhetsarrangement</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={BASE_URL} />
+        <link rel="canonical" href={SITE_URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={BASE_URL} />
+        <meta property="og:url" content={SITE_URL} />
         <meta property="og:title" content="Løypevær – Vær langs ruten for norske utholdenhetsarrangement" />
         <meta property="og:description" content={description} />
         <meta property="og:locale" content="nb_NO" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Løypevær – Vær langs ruten for norske utholdenhetsarrangement" />
         <meta name="twitter:description" content={description} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Løypevær",
+            url: SITE_URL,
+            description,
+            inLanguage: "nb-NO",
+          })}
+        </script>
       </Helmet>
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
