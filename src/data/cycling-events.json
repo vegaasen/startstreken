@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T11:19:03.233Z",
+  "generatedAt": "2026-09-07T09:54:59.894Z",
   "source": "eqtiming.com / Norges Cykleforbund (organizationId=13)",
   "events": [
     {
@@ -1606,7 +1606,7 @@
       "distance": 90,
       "distanceLabel": "90 km",
       "sportLevel": "Trim",
-      "region": "Øvre Eiker",
+      "region": "Buskerud",
       "url": "http://eikerrittet.no/",
       "waypoints": [
         {
@@ -2526,6 +2526,24 @@
           "label": "Start/Mål – strengereid",
           "lat": 58.53040805,
           "lon": 8.89137276
+        }
+      ]
+    },
+    {
+      "id": "blindleia-ck-apent-km-fellesstart",
+      "name": "Blindleia CK Åpent KM Fellesstart 2026",
+      "discipline": "landevei",
+      "officialDate": "2026-09-19",
+      "distance": 66.4,
+      "distanceLabel": "66.4 km",
+      "sportLevel": "Klubb",
+      "region": "Agder",
+      "url": " ",
+      "waypoints": [
+        {
+          "label": "Start/Mål – Lillesand",
+          "lat": 58.27322767,
+          "lon": 8.3257567
         }
       ]
     }
