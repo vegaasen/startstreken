@@ -1601,11 +1601,20 @@ code {
 
 /* Collapsible past month */
 .home-page__month-details {
+  margin-top: 4px;
+}
+
+.home-page__month-details[open] {
   margin-top: 32px;
 }
 
 .home-page__month-details > .home-page__month-summary {
   padding: 3px 0;
+  margin-bottom: 0;
+}
+
+.home-page__month-details[open] > .home-page__month-summary {
+  margin-bottom: 1.25rem;
 }
 
 .home-page__month-summary {
@@ -1672,7 +1681,7 @@ code {
 }
 
 .home-page__month-section {
-  margin-top: 32px;
+  margin-top: 15px;
   scroll-margin-top: 8px;
   @media (max-width: 1024px) {
     margin-top: 24px;
@@ -1685,12 +1694,12 @@ code {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
   position: sticky;
   top: 0;
   z-index: 10;
   background: var(--bg);
-  padding: 8px 0;
+  padding: 0;
   display: flex;
   align-items: baseline;
   gap: 8px;
