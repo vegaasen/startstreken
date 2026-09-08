@@ -35,6 +35,9 @@ const ElevationProfile = lazy(() =>
   import("../components/ElevationProfile").then((m) => ({ default: m.ElevationProfile })),
 );
 
+/** Fractions of race duration at which to show live weather for single-point (løping) events. */
+const RUNNING_PROGRESS_FRACTIONS = [0.2, 0.4, 0.6, 0.8, 1.0];
+
 export function EventPage() {
   const { id } = useParams<{ id: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -116,25 +119,39 @@ export function EventPage() {
 
   const timingActive = selectedDate !== "" && startTime !== "" && finishTime !== "";
 
-  const waypointCount = rittData?.waypoints.length ?? 5;
-  const dynamicFractions = Array.from({ length: waypointCount }, (_, i) =>
-    waypointCount === 1 ? 0 : i / (waypointCount - 1),
-  );
+  // Running events are single-point loop courses (no route to spread waypoints
+  // along), so instead we show live weather at 20/40/60/80/100% of expected
+  // race duration, all at the same location.
+  const isSingleLocationRunning =
+    rittData?.discipline === "løping" && rittData.waypoints.length === 1;
+
+  // Shown even before a start/finish time is picked, faded, as a preview of
+  // the per-point breakdown that appears once timing is set.
+  const weatherWaypoints = isSingleLocationRunning
+    ? RUNNING_PROGRESS_FRACTIONS.map((f) => ({
+        ...rittData!.waypoints[0],
+        label: `${Math.round(f * 100)} % av løpet`,
+      }))
+    : (rittData?.waypoints ?? []);
+
+  const waypointCount = weatherWaypoints.length || 5;
+  const dynamicFractions = isSingleLocationRunning
+    ? RUNNING_PROGRESS_FRACTIONS
+    : Array.from({ length: waypointCount }, (_, i) =>
+        waypointCount === 1 ? 0 : i / (waypointCount - 1),
+      );
 
   const datetimes = timingActive
     ? calcWaypointTimes(selectedDate, startTime, finishTime, dynamicFractions)
     : null;
 
   // useWeather shares query keys with WeatherStrip — TanStack Query deduplicates the fetches
-  const weatherResults = useWeather(
-    rittData ? rittData.waypoints : [],
-    selectedDate || null,
-    datetimes,
-  );
+  const weatherResults = useWeather(weatherWaypoints, selectedDate || null, datetimes);
 
-  // Dynamic og values
+  // Dynamic og values — for the single-location running strip all entries share
+  // the same weather, so only the first is useful in the summary line.
   const ogDescription =
-    buildOgDescription(weatherResults) ??
+    buildOgDescription(isSingleLocationRunning ? weatherResults.slice(0, 1) : weatherResults) ??
     (rittData ? `${rittData.name} – værmeldingen langs løypa` : "Løypevær");
 
   const ogImage = rittData
@@ -383,13 +400,17 @@ export function EventPage() {
                 startWaypointWeather={weatherResults[0]?.data ?? null}
               />
               <WeatherStrip
-                waypoints={rittData.waypoints}
+                waypoints={weatherWaypoints}
                 date={selectedDate || null}
                 startTime={startTime || null}
                 finishTime={finishTime || null}
                 externalResults={weatherResults}
                 onWaypointClick={(wp, i) => trackWaypointSelected(rittData.id, wp.label, i)}
-                totalDistanceKm={rittData.distance}
+                totalDistanceKm={isSingleLocationRunning ? undefined : rittData.distance}
+                fractions={dynamicFractions}
+                forecastOnly={forecastOnly}
+                sameLocation={isSingleLocationRunning}
+                placeholder={isSingleLocationRunning && !timingActive}
               />
             </>
           )}

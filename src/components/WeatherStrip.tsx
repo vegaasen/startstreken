@@ -18,6 +18,14 @@ type Props = {
   onWaypointClick?: (waypoint: Waypoint, index: number) => void;
   /** Total route distance in km. When provided, intermediate waypoints show an approximate distance label. */
   totalDistanceKm?: number;
+  /** Explicit fractions (0–1) to use instead of the default even spread across waypoints. */
+  fractions?: number[];
+  /** Skip historical/climate data entirely and only show live forecast data. */
+  forecastOnly?: boolean;
+  /** All waypoints represent the same physical location (e.g. a time-only progress strip). Suppresses route-bearing wind classification. */
+  sameLocation?: boolean;
+  /** Shown faded, as a preview — the cards illustrate the feature but aren't tied to a real arrival time yet. */
+  placeholder?: boolean;
 };
 
 export function WeatherStrip({
@@ -28,6 +36,10 @@ export function WeatherStrip({
   externalResults,
   onWaypointClick,
   totalDistanceKm,
+  fractions,
+  forecastOnly,
+  sameLocation,
+  placeholder,
 }: Props) {
   const timingActive =
     date != null &&
@@ -37,7 +49,7 @@ export function WeatherStrip({
     finishTime !== "";
 
   const n = waypoints.length;
-  const dynamicFractions = Array.from({ length: n }, (_, i) => (n === 1 ? 0 : i / (n - 1)));
+  const dynamicFractions = fractions ?? Array.from({ length: n }, (_, i) => (n === 1 ? 0 : i / (n - 1)));
 
   const datetimes = timingActive
     ? calcWaypointTimes(date, startTime, finishTime, dynamicFractions)
@@ -60,7 +72,7 @@ export function WeatherStrip({
   );
 
   useEffect(() => {
-    if (!date) return;
+    if (!date || forecastOnly) return;
     let cancelled = false;
     getWeatherCache()
       .then((cache) => {
@@ -74,45 +86,66 @@ export function WeatherStrip({
     return () => {
       cancelled = true;
     };
-  }, [waypoints, date]);
+  }, [waypoints, date, forecastOnly]);
 
   return (
     <div className="weather-strip">
       <div className="weather-strip__cards">
-        {results.map(({ waypoint, data, isLoading, isError }, i) => (
-          <WeatherCard
-            key={`${waypoint.lat}-${waypoint.lon}`}
-            waypoint={waypoint}
-            data={data}
-            isLoading={isLoading}
-            isError={isError}
-            arrivalTime={datetimes ? formatArrivalTime(datetimes[i]) : undefined}
-            datetime={datetimes ? datetimes[i] : undefined}
-            routeBearing={routeBearingForWaypoint(waypoints, i) ?? undefined}
-            onClick={onWaypointClick ? () => onWaypointClick(waypoint, i) : undefined}
-            date={date}
-            historicalYears={date ? historicalYearsPerWaypoint[i] : undefined}
-            approximateDistanceKm={
-              totalDistanceKm != null && n > 2 && i > 0 && i < n - 1
-                ? (i / (n - 1)) * totalDistanceKm
-                : undefined
-            }
-          />
-        ))}
+        {results.map(({ waypoint, data, isLoading, isError }, i) => {
+          // Only the first card shows real data before timing is set — the
+          // rest are dashed-out stubs hinting that picking a start/finish
+          // time unlocks a per-point breakdown.
+          if (placeholder && i > 0) {
+            return (
+              <div className="weather-card weather-card--stub" key={`${waypoint.lat}-${waypoint.lon}-${i}`}>
+                <div className="weather-card__label">{waypoint.label}</div>
+                <div className="weather-card__stub-dash">–</div>
+              </div>
+            );
+          }
+          return (
+            <WeatherCard
+              key={`${waypoint.lat}-${waypoint.lon}-${i}`}
+              waypoint={waypoint}
+              data={data}
+              isLoading={isLoading}
+              isError={isError}
+              arrivalTime={datetimes ? formatArrivalTime(datetimes[i]) : undefined}
+              datetime={datetimes ? datetimes[i] : undefined}
+              routeBearing={sameLocation ? undefined : (routeBearingForWaypoint(waypoints, i) ?? undefined)}
+              onClick={onWaypointClick ? () => onWaypointClick(waypoint, i) : undefined}
+              date={date}
+              historicalYears={
+                !forecastOnly && date ? historicalYearsPerWaypoint[i] : undefined
+              }
+              approximateDistanceKm={
+                totalDistanceKm != null && n > 2 && i > 0 && i < n - 1
+                  ? (i / (n - 1)) * totalDistanceKm
+                  : undefined
+              }
+            />
+          );
+        })}
       </div>
       <div className="weather-strip__footer">
         <span className="weather-strip__swipe-hint">← Sveip for å se alle punkter →</span>
-        {date && (
+        {placeholder ? (
           <span className="weather-strip__banner">
-            <i>
-              {mode === "yr-forecast"
-                ? "Viser værvarsel fra Yr / MET Norway (opptil 9 dager)"
-                : mode === "forecast"
-                  ? "Viser værvarsel fra Open-Meteo (dager 10–16)"
-                  : "Viser klimagjennomsnitt (historiske data 2015–2024)"}
-              {timingActive && " · Vær ved forventet ankomsttid"}
-            </i>
+            <i>Velg starttid og sluttid over for å se vær ved forventet tid på hvert punkt</i>
           </span>
+        ) : (
+          date && (
+            <span className="weather-strip__banner">
+              <i>
+                {mode === "yr-forecast"
+                  ? "Viser værvarsel fra Yr / MET Norway (opptil 9 dager)"
+                  : mode === "forecast"
+                    ? "Viser værvarsel fra Open-Meteo (dager 10–16)"
+                    : "Viser klimagjennomsnitt (historiske data 2015–2024)"}
+                {timingActive && " · Vær ved forventet ankomsttid"}
+              </i>
+            </span>
+          )
         )}
       </div>
     </div>

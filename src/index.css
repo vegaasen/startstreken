@@ -3438,6 +3438,24 @@ details[open] .history-table__summary::before {
   }
 }
 
+.weather-card--stub {
+  opacity: 0.35;
+  filter: grayscale(0.5);
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.weather-card--stub:hover {
+  border-color: var(--border);
+}
+
+.weather-card__stub-dash {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
 .weather-card {
   flex: 1 0 160px;
   max-width: 220px;
