@@ -49,7 +49,8 @@ export function WeatherStrip({
     finishTime !== "";
 
   const n = waypoints.length;
-  const dynamicFractions = fractions ?? Array.from({ length: n }, (_, i) => (n === 1 ? 0 : i / (n - 1)));
+  const dynamicFractions =
+    fractions ?? Array.from({ length: n }, (_, i) => (n === 1 ? 0 : i / (n - 1)));
 
   const datetimes = timingActive
     ? calcWaypointTimes(date, startTime, finishTime, dynamicFractions)
@@ -97,7 +98,11 @@ export function WeatherStrip({
           // time unlocks a per-point breakdown.
           if (placeholder && i > 0) {
             return (
-              <div className="weather-card weather-card--stub" key={`${waypoint.lat}-${waypoint.lon}-${i}`}>
+              <div
+                className="weather-card weather-card--stub"
+                // biome-ignore lint/suspicious/noArrayIndexKey: waypoints can share lat/lon, index disambiguates
+                key={`${waypoint.lat}-${waypoint.lon}-${i}`}
+              >
                 <div className="weather-card__label">{waypoint.label}</div>
                 <div className="weather-card__stub-dash">–</div>
               </div>
@@ -105,6 +110,7 @@ export function WeatherStrip({
           }
           return (
             <WeatherCard
+              // biome-ignore lint/suspicious/noArrayIndexKey: waypoints can share lat/lon, index disambiguates
               key={`${waypoint.lat}-${waypoint.lon}-${i}`}
               waypoint={waypoint}
               data={data}
@@ -112,12 +118,12 @@ export function WeatherStrip({
               isError={isError}
               arrivalTime={datetimes ? formatArrivalTime(datetimes[i]) : undefined}
               datetime={datetimes ? datetimes[i] : undefined}
-              routeBearing={sameLocation ? undefined : (routeBearingForWaypoint(waypoints, i) ?? undefined)}
+              routeBearing={
+                sameLocation ? undefined : (routeBearingForWaypoint(waypoints, i) ?? undefined)
+              }
               onClick={onWaypointClick ? () => onWaypointClick(waypoint, i) : undefined}
               date={date}
-              historicalYears={
-                !forecastOnly && date ? historicalYearsPerWaypoint[i] : undefined
-              }
+              historicalYears={!forecastOnly && date ? historicalYearsPerWaypoint[i] : undefined}
               approximateDistanceKm={
                 totalDistanceKm != null && n > 2 && i > 0 && i < n - 1
                   ? (i / (n - 1)) * totalDistanceKm
