@@ -1,5 +1,14 @@
 [
   {
+    "sha": "bbcda3ea55c41022840f9a2ce7bc0bd9c13f26dc",
+    "shortSha": "bbcda3e",
+    "date": "2026-09-08",
+    "type": "feat",
+    "scope": null,
+    "subject": "Add support for locating weather throughout a run as well",
+    "githubUrl": "https://github.com/vegaasen/loypevaer/commit/bbcda3ea55c41022840f9a2ce7bc0bd9c13f26dc"
+  },
+  {
     "sha": "83f379fcfffe1ec2f29ebebb1604f70fb4d0accc",
     "shortSha": "83f379f",
     "date": "2026-08-24",
