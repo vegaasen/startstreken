@@ -55,7 +55,9 @@ export function LopPage() {
   );
 
   const grouped = useMemo(() => groupByYearMonth(filtered), [filtered]);
-  const currentYear = new Date().getFullYear();
+  const now = useMemo(() => new Date(), []);
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
   const years = useMemo(() => [...grouped.keys()].sort((a, b) => b - a), [grouped]);
   const currentAndPastYears = useMemo(
     () => years.filter((y) => y <= currentYear),
@@ -157,40 +159,84 @@ export function LopPage() {
         {currentAndPastYears.map((year) => {
           const byMonth = grouped.get(year)!;
           const months = [...byMonth.keys()].sort((a, b) => a - b);
+          const isPastYear = year < currentYear;
+          const yearContent = (
+            <>
+              {months.map((month) => {
+                const monthEvents = byMonth.get(month)!;
+                const isCurrentMonth = year === currentYear && month === currentMonth;
+                const isCollapsedMonth =
+                  monthEvents.every((r) => daysUntil(r.officialDate) < 0) && !isCurrentMonth;
+                const monthInner = (
+                  <div
+                    key={month}
+                    id={`month-${year}-${month}`}
+                    className="home-page__month-section"
+                  >
+                    <div className="lop-list">
+                      {monthEvents.map((r) => (
+                        <RunningEventRow
+                          key={r.id}
+                          id={r.id}
+                          name={r.name}
+                          officialDate={r.officialDate}
+                          distance={r.distance}
+                          distanceLabel={r.distanceLabel}
+                          region={r.region}
+                          discipline={r.discipline}
+                          countdown={formatCountdown(r.officialDate)}
+                          planned={isPlanned(r.id)}
+                          isPast={daysUntil(r.officialDate) < 0}
+                          dateStatus={r.dateStatus}
+                          onTogglePlanned={(e) => handleToggle(r.id, r.officialDate, e)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                );
+                if (isCollapsedMonth) {
+                  return (
+                    <details key={month} className="home-page__month-details">
+                      <summary className="home-page__month-heading home-page__month-summary">
+                        <span className="home-page__month-summary-label">
+                          {monthName(month)}
+                          <span className="month-count-badge">{monthEvents.length}</span>
+                        </span>
+                      </summary>
+                      {monthInner}
+                    </details>
+                  );
+                }
+                return (
+                  <>
+                    <h3 className="home-page__month-heading">
+                      <a href={`#month-${year}-${month}`} className="home-page__month-anchor">
+                        {monthName(month)}
+                      </a>
+                      {monthEvents.length > 1 && (
+                        <span className="month-count-badge">{monthEvents.length}</span>
+                      )}
+                    </h3>
+                    {monthInner}
+                  </>
+                );
+              })}
+            </>
+          );
+          if (isPastYear) {
+            return (
+              <details key={year} className="home-page__year-details">
+                <summary className="home-page__year-heading home-page__year-summary">
+                  {year}
+                </summary>
+                <section className="home-page__year-section">{yearContent}</section>
+              </details>
+            );
+          }
           return (
             <section key={year} className="home-page__year-section">
               <h2 className="home-page__year-heading">{year}</h2>
-              {months.map((month) => (
-                <div key={month} id={`month-${year}-${month}`} className="home-page__month-section">
-                  <h3 className="home-page__month-heading">
-                    <a href={`#month-${year}-${month}`} className="home-page__month-anchor">
-                      {monthName(month)}
-                    </a>
-                    {(byMonth.get(month)?.length ?? 0) > 1 && (
-                      <span className="month-count-badge">{byMonth.get(month)?.length}</span>
-                    )}
-                  </h3>
-                  <div className="lop-list">
-                    {byMonth.get(month)?.map((r) => (
-                      <RunningEventRow
-                        key={r.id}
-                        id={r.id}
-                        name={r.name}
-                        officialDate={r.officialDate}
-                        distance={r.distance}
-                        distanceLabel={r.distanceLabel}
-                        region={r.region}
-                        discipline={r.discipline}
-                        countdown={formatCountdown(r.officialDate)}
-                        planned={isPlanned(r.id)}
-                        isPast={daysUntil(r.officialDate) < 0}
-                        dateStatus={r.dateStatus}
-                        onTogglePlanned={(e) => handleToggle(r.id, r.officialDate, e)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
+              {yearContent}
             </section>
           );
         })}

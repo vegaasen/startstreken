@@ -10,7 +10,7 @@
  * Run weekly via GitHub Actions (.github/workflows/refresh-running.yml).
  */
 
-import { writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -202,6 +202,24 @@ async function main() {
 
   console.log(`  ${filtered.length} future events with valid distances`);
 
+  const outputPath = resolve(__dirname, "../src/data/running-events.json");
+
+  // Preserve past events across the full-overwrite: the API only returns
+  // future/confirmed events, so once a race's date passes it would otherwise
+  // vanish from our data entirely instead of staying visible as a past event.
+  let pastEvents: RunningEvent[] = [];
+  if (existsSync(outputPath)) {
+    try {
+      const existing = JSON.parse(readFileSync(outputPath, "utf-8")) as { events: RunningEvent[] };
+      pastEvents = (existing.events ?? []).filter(
+        (e) => new Date(`${e.officialDate}T00:00:00`) < today,
+      );
+    } catch {
+      console.warn("  Could not parse existing running-events.json, starting fresh");
+    }
+  }
+  console.log(`  ${pastEvents.length} past events carried over from existing data`);
+
   const output: RunningEvent[] = [];
   // Track seen IDs to handle duplicates from slugification
   const seenIds = new Set<string>();
@@ -252,21 +270,28 @@ async function main() {
     });
   }
 
-  const outputPath = resolve(__dirname, "../src/data/running-events.json");
+  // Merge past events back in; freshly fetched data wins on id collisions.
+  const byId = new Map<string, RunningEvent>();
+  for (const e of pastEvents) byId.set(e.id, e);
+  for (const e of output) byId.set(e.id, e);
+  const mergedEvents = [...byId.values()].sort((a, b) =>
+    a.officialDate.localeCompare(b.officialDate),
+  );
+
   writeFileSync(
     outputPath,
     JSON.stringify(
       {
         generatedAt: new Date().toISOString(),
         source: "racedays.run",
-        events: output,
+        events: mergedEvents,
       },
       null,
       2,
     ),
   );
 
-  console.log(`\nWrote ${output.length} events to src/data/running-events.json`);
+  console.log(`\nWrote ${mergedEvents.length} events to src/data/running-events.json`);
 }
 
 main().catch((err) => {
