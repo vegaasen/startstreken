@@ -1,5 +1,14 @@
 [
   {
+    "sha": "675b229719472e8d91a09096363f47823ed296de",
+    "shortSha": "675b229",
+    "date": "2026-09-08",
+    "type": "feat",
+    "scope": null,
+    "subject": "Old runs too in the mix",
+    "githubUrl": "https://github.com/vegaasen/loypevaer/commit/675b229719472e8d91a09096363f47823ed296de"
+  },
+  {
     "sha": "bbcda3ea55c41022840f9a2ce7bc0bd9c13f26dc",
     "shortSha": "bbcda3e",
     "date": "2026-09-08",
