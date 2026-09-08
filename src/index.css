@@ -2679,6 +2679,18 @@ code {
   flex-shrink: 0;
 }
 
+.running-row__category--under10km {
+  background: color-mix(in srgb, #6b7280 14%, transparent);
+  color: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  .running-row__category--under10km {
+    background: color-mix(in srgb, #9ca3af 14%, transparent);
+    color: #9ca3af;
+  }
+}
+
 .running-row__category--10k {
   background: color-mix(in srgb, #2e7d4f 14%, transparent);
   color: #2e7d4f;
